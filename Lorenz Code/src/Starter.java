@@ -11,9 +11,16 @@ public class Starter {
 		initMurrayMap();
 
 		String plaintext = "ABCDE";
-		String key = "01010 10010 01010 10001 01010";
-		String xorCipher = xor(encodePlaintext(plaintext), key);
-		System.out.println("decrypted ciphertext: " + decodeCiphertext(xor(xorCipher, key)));
+		String key = "0101010010010101000101010";
+		String pEncoded = encodePlaintext(plaintext);
+		String xored = xor(pEncoded, key); 
+		
+		System.out.println("Plaintext: " + plaintext);
+		System.out.println("pEn: " + pEncoded);
+		System.out.println("key: " + key);
+		System.out.println("----------------------");
+		System.out.println("xor: " + xored);
+		System.out.println("xor(decoded): " + decodeCiphertext(xored));
 
 	}
 
@@ -23,18 +30,16 @@ public class Starter {
 		p = p.toUpperCase();
 		for (int i = 0; i < p.length(); ++i) {
 			sb.append(encode(p.charAt(i)));
-			if (i < p.length() - 1) {
-				sb.append(" ");
-			}
 		}
 
 		return sb.toString();
+
 	}
 
 	private static String decodeCiphertext(String c) {
 		Objects.requireNonNull(c, "Ciphertext must not be null at this point.");
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < c.length(); i += WORD_LENGTH + 1) {
+		for (int i = 0; i < c.length(); i += WORD_LENGTH) {
 			sb.append(decode(c.substring(i, i + WORD_LENGTH)));
 		}
 		return sb.toString();
@@ -101,6 +106,10 @@ public class Starter {
 		murrayCode.putIfAbsent('X', "11101");
 		murrayCode.putIfAbsent('Y', "10101");
 		murrayCode.putIfAbsent('Z', "10001");
+		
+		// Operations
+		murrayCode.putIfAbsent(' ', "00100");
+		
 	}
 
 }
