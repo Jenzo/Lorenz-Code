@@ -13,14 +13,18 @@ public class Starter {
 		String plaintext = "ABCDE";
 		String key = "0101010010010101000101010";
 		String pEncoded = encodePlaintext(plaintext);
-		String xored = xor(pEncoded, key); 
-		
-		System.out.println("Plaintext: " + plaintext);
-		System.out.println("pEn: " + pEncoded);
+		String cipher = xor(pEncoded, key);
+
+		System.out.println("plaintext: " + plaintext);
+		System.out.println("plaintext(encoded): " + pEncoded);
 		System.out.println("key: " + key);
 		System.out.println("----------------------");
-		System.out.println("xor: " + xored);
-		System.out.println("xor(decoded): " + decodeCiphertext(xored));
+		System.out.println("cipher: " + cipher);
+		System.out.println("cipher(decoded): " + decodeCiphertext(cipher));
+
+		String keyAgain = xor(pEncoded, cipher);
+		System.out.println("key(plaintext xor cipher): " + keyAgain);
+		System.out.println("plaintext(key xor cipher): " + decodeCiphertext(xor(key, cipher)));
 
 	}
 
@@ -106,10 +110,10 @@ public class Starter {
 		murrayCode.putIfAbsent('X', "11101");
 		murrayCode.putIfAbsent('Y', "10101");
 		murrayCode.putIfAbsent('Z', "10001");
-		
+
 		// Operations
 		murrayCode.putIfAbsent(' ', "00100");
-		
+
 	}
 
 }
