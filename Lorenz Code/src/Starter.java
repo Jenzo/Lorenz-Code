@@ -14,7 +14,6 @@ public class Starter {
 		String key = "01010 10010 01010 10001 01010";
 		String xorCipher = xor(encodePlaintext(plaintext), key);
 		System.out.println("decrypted ciphertext: " + decodeCiphertext(xor(xorCipher, key)));
-		System.out.println("Test");
 
 	}
 
